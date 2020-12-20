@@ -19,16 +19,18 @@ const FlexibleMenuBar = (props) => {
   const totalOccupiedWidth = parseInt(
     leftConstData.length * eachItemWidth +
       rightConstData.length * eachItemWidth +
-      2 * (leftConstData.length + rightConstData.length + 1) * eachItemPadding
+      2 * (leftConstData.length + rightConstData.length + 1) * eachItemPadding,
+    10
   );
 
   const menuItemStyle = {
     minWidth: `${eachItemWidth}px`,
     minHeight: `${eachItemWidth}px`,
-    margin: `${eachItemPadding}px`,
+    margin: `${eachItemPadding}px`
   };
   const eachBoxWidth = parseInt(
-    eachItemWidth + 2 * eachItemPadding + (eachItemPadding / 2 + 1)
+    eachItemWidth + 2 * eachItemPadding + (eachItemPadding / 2 + 1),
+    10
   );
   const totalBoxes = allDataList.length;
 
@@ -44,7 +46,7 @@ const FlexibleMenuBar = (props) => {
           <Popup
             key={inx}
             style={menuItemStyle}
-            content={<>{createMenubarItems(allDataList)}</>}
+            content={<>{createMenubarItems(extraDataList)}</>}
             on="click"
             popper={{ id: "popper-container", style: { zIndex: 2000 } }}
             position="top left"
@@ -74,7 +76,7 @@ const FlexibleMenuBar = (props) => {
   const getDataListByWidth = (width) => {
     if (width) {
       const totalLeftWidth = width - totalOccupiedWidth;
-      const tbck = parseInt(totalLeftWidth / eachBoxWidth);
+      const tbck = parseInt(totalLeftWidth / eachBoxWidth, 10);
       const lenDiff = tbck - dataList.length;
       if (totalLeftWidth > 0) {
         if (tbck >= totalBoxes) {
@@ -124,7 +126,7 @@ const FlexibleMenuBar = (props) => {
               {createMenubarItems(leftConstData)}
             </div>
             <div className="center-var-data">
-              {createMenubarItems(getDataListByWidth(parseInt(size.width)))}
+              {createMenubarItems(getDataListByWidth(parseInt(size.width, 10)))}
             </div>
             <div className="right-const-data">
               {createMenubarItems(rightConstData)}
