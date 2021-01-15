@@ -25,7 +25,7 @@
           </li>
           <li>
             For, full logic of the component chekout 
-            <a href="https://github.com/nobi1007/react-components/blob/main/smart-nav-bar/src/components/FlexibleMenuBar/FlexibleMenuBar.js">
+            <a href="https://github.com/nobi1007/react-components/blob/main/flexible-menu-bar/src/components/FlexibleMenuBar/FlexibleMenuBar.js">
               here
             </a>
             .
