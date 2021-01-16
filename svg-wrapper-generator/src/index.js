@@ -3,19 +3,10 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import svgfile from "./sampleSvg.svg";
 
 ReactDOM.render(
   <React.StrictMode>
-    <App
-      className="App-logo"
-      svgFile={svgfile}
-      style={{
-        backgroundColor: "red",
-        border: "solid 1px",
-        borderRadius: "10px",
-      }}
-    />
+    <App />
   </React.StrictMode>,
   document.getElementById("root")
 );
