@@ -17,7 +17,7 @@ export const getWrapperComponent = (rootNode, parentProps) => {
   const NodeComponent = getCompByName(nodeName);
 
   if (rootNode.childNodes.length === 0) {
-    return <NodeComponent {...nodeAttributes} />;
+    return <NodeComponent {...nodeAttributes} key={rootNode.key} />;
   } else {
     const SiblingComponents = [];
     rootNode.childNodes.forEach((eachChild, inx) => {
@@ -25,7 +25,7 @@ export const getWrapperComponent = (rootNode, parentProps) => {
       SiblingComponents.push(EachChildComp);
     });
     return (
-      <NodeComponent {...nodeAttributes} {...parentProps}>
+      <NodeComponent {...nodeAttributes} {...parentProps} key={rootNode.key}>
         {SiblingComponents}
       </NodeComponent>
     );
