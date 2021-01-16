@@ -1,4 +1,6 @@
-export const removeWhiteSpaces = (inpString) => {
+import { getCompByName } from "../utils/exportSvgElements";
+
+export const removeNewlineCharacters = (inpString) => {
   let tempString = "";
   const noSpaceList = inpString.split(/\r?\n|\r/g);
   noSpaceList.forEach((element) => {
@@ -9,24 +11,23 @@ export const removeWhiteSpaces = (inpString) => {
   return tempString;
 };
 
-export const convertPropsToString = (props) => {
-  let opString = "";
-  console.log("input props", props);
-  const keys = Object.keys(props);
-  keys.forEach((eachKey, inx) => {
-    opString += ` ${eachKey}="${props[eachKey]}"`;
-  });
-  return opString;
-};
+export const getWrapperComponent = (rootNode, parentProps) => {
+  const nodeAttributes = { ...rootNode.attributes };
+  const nodeName = rootNode.nodeName;
+  const NodeComponent = getCompByName(nodeName);
 
-export const insertPropsToFileString = (inpString, vals) => {
-  console.log("input- -- props", vals);
-  const toInsertString = convertPropsToString(vals);
-  const startIndex = inpString.indexOf("<svg");
-  const opString =
-    inpString.substring(0, startIndex + 4) +
-    toInsertString +
-    inpString.substring(startIndex + 4, inpString.length);
-  console.log("op-string", opString);
-  return opString;
+  if (rootNode.childNodes.length === 0) {
+    return <NodeComponent {...nodeAttributes} />;
+  } else {
+    const SiblingComponents = [];
+    rootNode.childNodes.forEach((eachChild, inx) => {
+      const EachChildComp = getWrapperComponent(eachChild, {});
+      SiblingComponents.push(EachChildComp);
+    });
+    return (
+      <NodeComponent {...nodeAttributes} {...parentProps}>
+        {SiblingComponents}
+      </NodeComponent>
+    );
+  }
 };

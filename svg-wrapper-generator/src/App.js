@@ -1,10 +1,8 @@
 import React, { PureComponent } from "react";
 
-import { getCompByName } from "./utils/exportSvgElements";
-
 import "./App.scss";
 
-import { insertPropsToFileString, removeWhiteSpaces } from "./utils/utility";
+import { removeNewlineCharacters, getWrapperComponent } from "./utils/utility";
 
 class App extends PureComponent {
   constructor(props) {
@@ -14,7 +12,7 @@ class App extends PureComponent {
       fileData: "",
       wrapperCompObject: {},
       domObject: {},
-      RootComponent: null,
+      RootComponent: <></>,
     };
     this.randomKey = -1;
     this.nodeInfoObject = {};
@@ -36,7 +34,6 @@ class App extends PureComponent {
         actualChildNodes.push(eachChild);
       }
     });
-
     this.randomKey += 1;
     let nodeObject = {
       key: this.randomKey,
@@ -58,38 +55,19 @@ class App extends PureComponent {
     }
   };
 
-  getWrapperComponent = (rootNode) => {
-    const nodeAttributes = { ...rootNode.attributes };
-    const nodeName = rootNode.nodeName;
-    const NodeComponent = getCompByName(nodeName);
-
-    if (rootNode.childNodes.length === 0) {
-      return <NodeComponent {...nodeAttributes} />;
-    } else {
-      const SiblingComponents = [];
-      rootNode.childNodes.forEach((eachChild, inx) => {
-        const EachChildComp = this.getWrapperComponent(eachChild);
-        SiblingComponents.push(EachChildComp);
-      });
-      return (
-        <NodeComponent {...nodeAttributes}>{SiblingComponents}</NodeComponent>
-      );
-    }
-  };
-
   performConversion = () => {
     const { wrapperCompObject } = this.state;
     const rootObject = this.computeSubTrees(wrapperCompObject.childNodes[0]);
     this.setState({
       domObject: rootObject,
-      RootComponent: this.getWrapperComponent(rootObject),
+      RootComponent: (props) => {
+        return getWrapperComponent(rootObject, props);
+      },
     });
   };
 
   componentDidMount() {
     const { svgFile } = this.props;
-    let allProps = { ...this.props };
-    delete allProps.svgFile;
     fetch(svgFile)
       .then((res) => res.text())
       .then((resText) => {
@@ -97,7 +75,7 @@ class App extends PureComponent {
         let updatedCompWrapperObject = { ...this.state.wrapperCompObject };
         if (resText.length > 0) {
           updatedCompWrapperObject = new DOMParser().parseFromString(
-            insertPropsToFileString(removeWhiteSpaces(resText), allProps),
+            removeNewlineCharacters(resText),
             `application/xml`
           );
         }
@@ -116,12 +94,25 @@ class App extends PureComponent {
   render() {
     const { RootComponent, domObject } = this.state;
 
-    console.log("render again", domObject);
+    let allProps = { ...this.props };
+    delete allProps.svgFile;
 
     return (
       <div className="App">
-        <header className="App-header">
-          <div style={{ height: "20%", width: "20%" }}>{RootComponent}</div>
+        <header
+          className="App-header"
+          style={{
+            backgroundColor: "#181818",
+            border: "solid 1px",
+            borderRadius: "30px",
+            overflowY: "hidden",
+          }}
+        >
+          <div style={{ height: "20%", width: "20%" }} className="wrapper-div">
+            {Object.values(domObject).length > 0 && (
+              <RootComponent {...allProps} />
+            )}
+          </div>
 
           <p>
             Edit <code>src/App.js</code> and save to reload.

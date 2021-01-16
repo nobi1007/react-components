@@ -7,7 +7,15 @@ import svgfile from "./sampleSvg.svg";
 
 ReactDOM.render(
   <React.StrictMode>
-    <App className="App-logo" svgFile={svgfile} />
+    <App
+      className="App-logo"
+      svgFile={svgfile}
+      style={{
+        backgroundColor: "red",
+        border: "solid 1px",
+        borderRadius: "10px",
+      }}
+    />
   </React.StrictMode>,
   document.getElementById("root")
 );
