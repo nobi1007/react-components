@@ -3,6 +3,7 @@ import React, { PureComponent } from "react";
 import "./App.scss";
 
 import { removeNewlineCharacters, getWrapperComponent } from "./utils/utility";
+import { attributeNameMapping } from "./utils/exportSvgElements";
 
 class App extends PureComponent {
   constructor(props) {
@@ -25,8 +26,9 @@ class App extends PureComponent {
     let attributeNames = Object.keys(attributes);
     let actualAttributes = {};
     attributeNames.forEach((eachAttributeName, inx) => {
-      actualAttributes[attributes[eachAttributeName].nodeName] =
-        attributes[eachAttributeName].value;
+      actualAttributes[
+        attributeNameMapping[attributes[eachAttributeName].nodeName]
+      ] = attributes[eachAttributeName].value;
     });
     let actualChildNodes = [];
     rootNode.childNodes.forEach((eachChild) => {
@@ -98,7 +100,7 @@ class App extends PureComponent {
     delete allProps.svgFile;
 
     return (
-      <div className="App">
+      <div className="App" autoSave={"true"}>
         <header
           className="App-header"
           style={{

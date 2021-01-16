@@ -1,4 +1,4 @@
-import { getCompByName } from "../utils/exportSvgElements";
+import { getCompByName } from "./exportSvgElements";
 
 export const removeNewlineCharacters = (inpString) => {
   let tempString = "";
