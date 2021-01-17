@@ -1,6 +1,7 @@
 import React, { PureComponent } from "react";
 
-import SVGWrapper from "./components/SVGWrapper";
+import SVGWrapper from "./component/SVGWrapper";
+// import SVGWrapper from "svg-wrapper";
 
 import "./App.scss";
 import svg from "./sampleSvg.svg";

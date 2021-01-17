@@ -115,13 +115,13 @@ def getFuncDefs():
 
 def getFuncMappings():
     for element in svgElementNames:
-        tagName = element.title()
         print()
         print(
             """
-            %s: AllSvgComponents.%s,
+            %s: (props) => {
+            return <%s {...props}> \{props.children\} </%s>;},
             """
-            % (element, tagName)
+            % (element, element, element)
         )
         print()
 
