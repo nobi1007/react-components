@@ -21,7 +21,7 @@
             .
           </li>
           <li>
-            And, do :star and :fork the repo if it was <u>fantastic</u> :) and let me know
+            And, do :star: and :fork_and_knife: the repo if it was <u>fantastic</u> :) and let me know
             about your thoughts and bugs in <a href="https://github.com/nobi1007/react-components/issues/2">Issues </a> section.
           </li>
         </ol>
@@ -45,7 +45,7 @@ const MyComp = () => {
     // some wrapper/parent component if needed
     <someComp>
       <SVGWrapper
-        svgFile={svg}
+        svgFile={myLogo}
         className="App-logo"
         style={{
           backgroundColor: "red",
