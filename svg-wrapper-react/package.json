@@ -1,0 +1,27 @@
+{
+  "name": "svg-wrapper-react",
+  "version": "1.0.0",
+  "description": "Converts svg file passed as a prop into a React component.",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "nobi1007",
+  "license": "ISC",
+  "keywords": [
+    "svg",
+    "svg react component",
+    "react component"
+  ],
+  "peerDependencies": {
+    "react": "*"
+  },
+  "dependencies": {
+    "prop-types": "^15.7.2"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    ".gitignore"
+  ]
+}
