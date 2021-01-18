@@ -1,38 +1,61 @@
 <h2>
-        ! <span>Component Description and Usage</span> !
+        ! Component Description !
       </h2>
       <section className="main">
         <ol type="a">
           <li>
-            The <code>FlexibleMenuBar</code> container accepts each object's 
-            <code>width</code> and <code>padding</code> / <code>margin</code> 
-            applied to it as props.
+            The <code>SVGWrapper</code> component converts your svg file (passed as a prop) into and React component in-place.
           </li>
           <li>
-            Based on the total space available and total objects passed to the 
-            component, it calculates how many objects can be displayed in the 
-            menu bar.
-          </li>
-          <li>
-            Also, we may want some objects to displayed all the time and hence
-            we also have <code>leftConstData</code> and 
-            <code>rightConstData</code>. These are <code>arrays</code> through
-            which we can pass the constant data.
-          </li>
-          <li>
-            And, we pass the variable objects/items to be displayed in the form
-            of array and can be declared in <code>allDataList</code>.
+          Props description:
+          <ul>
+          <li>The <code>svgFile</code> prop is a required. prop</li>
+          <li>Also, you can any <code>props</code> to it as you wish.</li>
+          </ul>
           </li>
           <li>
             For, full logic of the component chekout 
-            <a href="https://github.com/nobi1007/react-components/blob/main/flexible-menu-bar/src/components/FlexibleMenuBar/FlexibleMenuBar.js">
+            <a href="https://github.com/nobi1007/react-components/blob/main/svg-wrapper-generator/src/component/SVGWrapper/SVGWrapper.js">
               here
             </a>
             .
           </li>
           <li>
-            And, do star and fork the repo if it was okay :) and let me know
-            about your thoughts in <a href="https://github.com/nobi1007/react-components/issues/1">Issues </a> section.
+            And, do :star and :fork the repo if it was <u>fantastic</u> :) and let me know
+            about your thoughts and bugs in <a href="https://github.com/nobi1007/react-components/issues/2">Issues </a> section.
           </li>
         </ol>
       </section>
+
+---
+
+<h2>! Usage !</h2>
+
+```js
+import React from "react";
+
+// will be published before 21 Jan 2021 :) .
+import SVGWrapper from "react-svg-wrapper";
+
+// import the svg you want to render
+import myLogo from "../images/myLogo.svg";
+
+const MyComp = () => {
+  return (
+    // some wrapper/parent component if needed
+    <someComp>
+      <SVGWrapper
+        svgFile={svg}
+        className="App-logo"
+        style={{
+          backgroundColor: "red",
+          border: "solid 1px",
+          borderRadius: "10px",
+        }}
+      />
+    </someComp>
+  );
+};
+
+export default MyComp;
+```
