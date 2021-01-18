@@ -1,6 +1,6 @@
 {
   "name": "svg-wrapper-react",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Converts svg file passed as a prop into a React component.",
   "main": "dist/index.js",
   "scripts": {
