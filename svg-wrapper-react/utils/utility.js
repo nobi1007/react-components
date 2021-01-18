@@ -1,3 +1,4 @@
+import React from "react";
 import { getCompByName } from "./exportSvgElements";
 
 export const removeNewlineCharacters = (inpString) => {

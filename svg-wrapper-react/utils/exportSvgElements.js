@@ -1,3 +1,5 @@
+import React from "react";
+
 export const componentNameMapping = {
   a: (props) => {
     return <a {...props}> {props.children} </a>;

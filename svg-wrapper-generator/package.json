@@ -9,6 +9,7 @@
     "react-scripts": "4.0.1"
   },
   "dependencies": {
+    "svg-wrapper-react": "^1.0.0"
   },
   "scripts": {
     "start": "react-scripts start",
