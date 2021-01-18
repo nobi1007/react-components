@@ -68,7 +68,9 @@ class SVGWrapper extends PureComponent {
   componentDidMount() {
     const { svgFile } = this.props;
     fetch(svgFile)
-      .then((res) => res.text())
+      .then((res) => {
+        return res.text();
+      })
       .then((resText) => {
         let updatedCompWrapperObject = { ...this.state.wrapperCompObject };
         if (resText.length > 0) {
